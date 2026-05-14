@@ -1,121 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import TareasList from "./components/TareasList/TareasList";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState("light");
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className={`${theme} min-h-screen text-slate-900 dark:bg-background dark:text-primary`}>
+      <div className="flex items-center justify-between p-4">
+        <div className="font-bold">Logo</div>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+        {/*Desktop Nav*/}
+        <div className="hidden sm:flex gap-5">
+          <span>Home</span>
+          <span>About</span>
+          <span>Contact</span>
+          <button className="text-2xl cursor-pointer" onClick={() => setTheme(theme === "light" ? "dark" : "light")}>{theme === "light" ? "🌙" : "☀️"}</button>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        <button className="text-2xl cursor-pointer sm:hidden"  onClick={() => setOpen(!open)}>≡</button>
+
+      </div>
+
+      {/*Mobile Nav*/}
+      {open && (
+        <div className="flex flex-col items-center gap-5 text-slate-900 dark:bg-slate-900 dark:text-white font-bold">
+          <span>Home</span>
+          <span>About</span>
+          <span>Contact</span>
+          <button className="text-2xl cursor-pointer" onClick={() => setTheme(theme === "light" ? "dark" : "light")}>{theme === "light" ? "🌙" : "☀️"}</button>
+
+        </div>
+      )}
+
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 text-white dark:text-white p-6 gap-6 font-bold text-center text-2xl sm:text-sm">
+        <div className="bg-slate-500 p-4 rounded hover:bg-slate-600 hover:scale-105 transition-all duration-300">Uno</div>
+        <div className="bg-slate-500 p-4 rounded hover:bg-slate-600 hover:scale-105">Dos</div>
+        <div className="bg-slate-500 p-4 rounded hover:bg-slate-600">Tres</div>
+        <div className="bg-slate-500 p-4 rounded hover:bg-slate-600">Cuatro</div>
+        <div className="bg-slate-500 p-4 rounded hover:bg-slate-600">Cinco</div>
+        <div className="bg-slate-500 p-4 rounded hover:bg-slate-600">Seis</div>
+      </div>
+    </div>
   )
 }
 
